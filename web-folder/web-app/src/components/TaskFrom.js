@@ -13,7 +13,7 @@ export default function TaskForm(props) {
     addTask,
   } = props;
   return (
-    <div>
+    <div class="AddTaskContainer">
       <form class="AddTaskForm">
         <label for="title">Task title:</label>
         <input

@@ -1,15 +1,16 @@
 import React from "react";
 import Task from "./Task";
+import "../style/TodoList.css";
 
 export default function TodoList(props) {
   const { todoList, removeTask } = props;
   return (
-    <div>
-      {todoList.map((task, index) => {
+    <div class="TodoListContianer">
+      {todoList.map((taskTitle, index) => {
         return (
           <Task
             key={index}
-            value={task}
+            title={taskTitle}
             onClickRemove={() => removeTask(index)}
           />
         );
