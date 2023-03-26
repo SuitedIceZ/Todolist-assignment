@@ -2,17 +2,17 @@ import React from "react";
 import "../style/Button.css";
 import "../style/Task.css";
 
-export default function Todo(props) {
-  const { title, onClickRemove } = props;
+export default function Task(props) {
+  const { title, description, status, dueDate, onClickRemove } = props;
   return (
     <div class="TaskCardContrainer">
       <h4>
         <b>{title}</b>
       </h4>
-      <p>description</p>
+      <p>{description}</p>
       <div id="statusAndDueDate">
-        <p>status</p>
-        <p>due date</p>
+        <p>{status}</p>
+        <p>{dueDate}</p>
       </div>
       <div>
         <button class="DoneButton" onClick={onClickRemove}>

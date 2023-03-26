@@ -11,7 +11,7 @@ function App() {
   const [inputTaskTitle, setTaskTitle] = useState("a task");
   const [inputTaskDescription, setTaskDescription] = useState("a description");
   const [inputTaskDueDate, setTaskDueDate] = useState("a due date");
-  //const [TaskStatus, setTaskStatus] = useState("TODO");
+  const [TaskStatus, setTaskStatus] = useState("TODO");
 
   const onChangeInputTaskTitle = ({ target: { value } }) => {
     setTaskTitle(value);
@@ -24,12 +24,19 @@ function App() {
   };
 
   const addTask = () => {
-    setTodoList([...todoList, inputTaskTitle]);
+    const newTask = {
+      title: inputTaskTitle,
+      description: inputTaskDescription,
+      dueDate: inputTaskDueDate,
+      status: TaskStatus,
+    };
+    setTodoList([...todoList, newTask]);
 
     //clear text
     setTaskTitle("");
     setTaskDescription("");
     setTaskDueDate("");
+    setTaskStatus("TODO");
   };
 
   const removeTask = (index) => {

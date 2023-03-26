@@ -6,11 +6,14 @@ export default function TodoList(props) {
   const { todoList, removeTask } = props;
   return (
     <div class="TodoListContianer">
-      {todoList.map((taskTitle, index) => {
+      {todoList.map((task, index) => {
         return (
           <Task
             key={index}
-            title={taskTitle}
+            title={task.title}
+            description={task.description}
+            status={task.status}
+            dueDate={task.dueDate}
             onClickRemove={() => removeTask(index)}
           />
         );
