@@ -1,5 +1,5 @@
 import React from "react";
-import Todo from "./Todo";
+import Task from "./Task";
 
 export default function TodoList(props) {
   const { todoList, removeTask } = props;
@@ -7,7 +7,7 @@ export default function TodoList(props) {
     <div>
       {todoList.map((task, index) => {
         return (
-          <Todo
+          <Task
             key={index}
             value={task}
             onClickRemove={() => removeTask(index)}

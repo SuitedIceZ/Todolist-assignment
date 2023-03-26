@@ -2,20 +2,34 @@ import React, { useState } from "react";
 import "./style/App.css";
 import "./style/Button.css";
 import TodoList from "./components/TodoList";
-function App() {
-  const [todoList, setTodoList] = useState(["task 1"]);
-  const [inputText, setText] = useState("a task");
+import TaskForm from "./components/TaskForm";
 
-  const onChangeInputText = ({ target: { value } }) => {
-    console.log("onChangeInputText: " + value);
-    setText(value);
+function App() {
+  const [todoList, setTodoList] = useState(["template task"]);
+
+  //TaskForm state
+  const [inputTaskTitle, setTaskTitle] = useState("a task");
+  const [inputTaskDescription, setTaskDescription] = useState("a description");
+  const [inputTaskDueDate, setTaskDueDate] = useState("a due date");
+  //const [TaskStatus, setTaskStatus] = useState("TODO");
+
+  const onChangeInputTaskTitle = ({ target: { value } }) => {
+    setTaskTitle(value);
+  };
+  const onChangeInputTaskDescription = ({ target: { value } }) => {
+    setTaskDescription(value);
+  };
+  const onChangeInputDueDate = ({ target: { value } }) => {
+    setTaskDueDate(value);
   };
 
   const addTask = () => {
-    setTodoList([...todoList, inputText]);
+    setTodoList([...todoList, inputTaskTitle]);
 
     //clear text
-    setText("");
+    setTaskTitle("");
+    setTaskDescription("");
+    setTaskDueDate("");
   };
 
   const removeTask = (index) => {
@@ -33,10 +47,15 @@ function App() {
         <h1>Todo list</h1>
       </div>
       <div class="AddTaskBar">
-        <input type="text" value={inputText} onChange={onChangeInputText} />
-        <button class="AddButton" onClick={addTask}>
-          Add
-        </button>
+        <TaskForm
+          inputTaskTitle={inputTaskTitle}
+          inputTaskDescription={inputTaskDescription}
+          inputTaskDueDate={inputTaskDueDate}
+          onChangeInputTaskTitle={onChangeInputTaskTitle}
+          onChangeInputTaskDescription={onChangeInputTaskDescription}
+          onChangeInputDueDate={onChangeInputDueDate}
+          addTask={addTask}
+        />
       </div>
 
       <div>

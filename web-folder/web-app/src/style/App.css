@@ -1,5 +1,7 @@
 .App {
+  background-color: #97999f;
   text-align: center;
+  min-height: 100vh;
 }
 
 .NavigateBar {
