@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./style/App.css";
+import "./style/Button.css";
 import TodoList from "./components/TodoList";
 function App() {
   const [todoList, setTodoList] = useState(["task 1"]);
@@ -26,11 +28,15 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>My First React App</h1>
-      <div>
+    <div class="App">
+      <div class="NavigateBar">
+        <h1>Todo list</h1>
+      </div>
+      <div class="AddTaskBar">
         <input type="text" value={inputText} onChange={onChangeInputText} />
-        <button onClick={addTask}>Add</button>
+        <button class="AddButton" onClick={addTask}>
+          Add
+        </button>
       </div>
 
       <div>

@@ -1,19 +1,19 @@
 import React from "react";
 import Todo from "./Todo";
-const TodoList = (props) => {
+
+export default function TodoList(props) {
+  const { todoList, removeTask } = props;
   return (
     <div>
-      {props.todoList.map((task, index) => {
+      {todoList.map((task, index) => {
         return (
           <Todo
             key={index}
             value={task}
-            onClickRemove={() => props.removeTask(index)}
+            onClickRemove={() => removeTask(index)}
           />
         );
       })}
     </div>
   );
-};
-
-export default TodoList;
+}

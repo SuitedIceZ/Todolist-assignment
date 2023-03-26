@@ -1,12 +1,14 @@
 import React from "react";
+import "../style/Button.css";
 
-const Todo = (props) => {
+export default function Todo(props) {
+  const { value, onClickRemove } = props;
   return (
     <div>
-      {props.value}
-      <button onClick={props.onClickRemove}>Remove</button>
+      {value}
+      <button class="RemoveButton" onClick={onClickRemove}>
+        Remove
+      </button>
     </div>
   );
-};
-
-export default Todo;
+}
