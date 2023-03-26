@@ -44,7 +44,9 @@ function App() {
   return (
     <div class="App">
       <div class="NavigateBar">
+        <div>username</div>
         <h1>Todo list</h1>
+        <button id="themeToggleButton">Toggle light/dark theme</button>
       </div>
       <div class="AddTaskBar">
         <TaskForm
