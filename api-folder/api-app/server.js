@@ -5,6 +5,12 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config/.env" });
 
 const app = express();
+
+// Routes
+const routes = require("./routes/index");
+app.use("/", routes);
+
+// page
 app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
