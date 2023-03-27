@@ -23,6 +23,15 @@ const ctrl = {
       .catch((e) => res.status(500).json(e));
   },
 
+  // PUT /tasks/?id&status
+  updateTaskStatus: async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    console.log("updateTaskStatus", id, status);
+    Task.findByIdAndUpdate(id, { status }, { new: true })
+      .then((task) => res.status(200).json(task))
+      .catch((e) => res.status(500).json(e));
+  },
   // POST /tasks
   createTask: async (req, res) => {
     const { title, description, status, dueDate } = req.body;
