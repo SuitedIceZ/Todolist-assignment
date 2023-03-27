@@ -4,28 +4,27 @@ const mongoose = require("mongoose");
 const ctrl = {
   // GET /tasks
   getTasks: async (req, res) => {
-    res.status(200).json({ msg: "getTasks" });
-    return "getTasks";
+    console.log("getTasks");
+
+    const total = await Task.countDocuments();
+    console.log("total", total);
+
     Task.find()
       .then((tasks) => res.status(200).json(tasks))
-      .catch((e) => res.error(e));
+      .catch((e) => res.status(500).json(e));
   },
 
   // GET /tasks/:id
   getTask: async (req, res) => {
-    // return "getTask ${id}"
     const { id } = req.params;
-    res.status(200).json({ msg: `getTask ${id}` });
-    return `getTask ${id}`;
+    console.log("getTask", id);
     Task.findById(id)
       .then((task) => res.status(200).json(task))
-      .catch((e) => res.error(e));
+      .catch((e) => res.status(500).json(e));
   },
 
   // POST /tasks
   createTask: async (req, res) => {
-    res.status(201).json({ msg: "createTask" });
-    return "createTask";
     const { title, description, status, dueDate } = req.body;
     const task = new Task({
       title,
@@ -36,17 +35,15 @@ const ctrl = {
     task
       .save()
       .then((task) => res.status(201).json(task))
-      .catch((e) => res.error(e));
+      .catch((e) => res.status(500).json(e));
   },
 
   //DELETE /tasks/:id
   deleteTask: async (req, res) => {
     const { id } = req.params;
-    res.status(200).json({ msg: `deleteTask ${id}` });
-    return `deleteTask ${id}`;
     Task.findByIdAndDelete(id)
       .then((task) => res.status(200).json(task))
-      .catch((e) => res.error(e));
+      .catch((e) => res.status(500).json(e));
   },
 };
 
