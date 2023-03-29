@@ -5,7 +5,7 @@ import "../style/TodoList.css";
 export default function TodoList(props) {
   const { todoList, removeTask } = props;
   return (
-    <div class="TodoListContianer">
+    <div className="TodoListContianer">
       {todoList.map((task, index) => {
         return (
           <Task

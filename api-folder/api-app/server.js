@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 // Load env vars
 dotenv.config({ path: "./config/.env" });
@@ -28,13 +29,19 @@ const app = express();
 // Body parser
 app.use(express.json());
 
+// Enable CORS
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+};
+app.use(cors());
+
 // Routes
 const routes = require("./routes/index");
-app.use("/", routes);
+app.use("/api", routes);
 
 // page
 app.get("/", (req, res) => {
-  res.send("Hello, world!");
+  res.json({ hello_world: "Hello, world!" });
 });
 
 const PORT = process.env.PORT || 5013;

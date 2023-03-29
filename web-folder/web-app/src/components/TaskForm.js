@@ -13,9 +13,9 @@ export default function TaskForm(props) {
     addTask,
   } = props;
   return (
-    <div class="AddTaskContainer">
-      <form class="AddTaskForm">
-        <label for="title">Task title:</label>
+    <div className="AddTaskContainer">
+      <form className="AddTaskForm">
+        <label htmlFor="title">Task title:</label>
         <input
           type="text"
           id="title"
@@ -23,7 +23,7 @@ export default function TaskForm(props) {
           value={inputTaskTitle}
           onChange={onChangeInputTaskTitle}
         />
-        <label for="description">Task description:</label>
+        <label htmlFor="description">Task description:</label>
         <input
           type="text"
           id="description"
@@ -31,7 +31,7 @@ export default function TaskForm(props) {
           value={inputTaskDescription}
           onChange={onChangeInputTaskDescription}
         />
-        <label for="dueDate">Task due date:</label>
+        <label htmlFor="dueDate">Task due date:</label>
         <input
           type="text"
           id="dueDate"
@@ -41,7 +41,7 @@ export default function TaskForm(props) {
         />
       </form>
 
-      <button class="AddButton" onClick={addTask}>
+      <button className="AddButton" onClick={addTask}>
         Add
       </button>
     </div>

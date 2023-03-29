@@ -5,7 +5,7 @@ import "../style/Task.css";
 export default function Task(props) {
   const { title, description, status, dueDate, onClickRemove } = props;
   return (
-    <div class="TaskCardContrainer">
+    <div className="TaskCardContrainer">
       <h4>
         <b>{title}</b>
       </h4>
@@ -15,10 +15,10 @@ export default function Task(props) {
         <p>{dueDate}</p>
       </div>
       <div>
-        <button class="DoneButton" onClick={onClickRemove}>
+        <button className="DoneButton" onClick={onClickRemove}>
           Done!
         </button>
-        <button class="RemoveButton" onClick={onClickRemove}>
+        <button className="RemoveButton" onClick={onClickRemove}>
           Remove
         </button>
       </div>
