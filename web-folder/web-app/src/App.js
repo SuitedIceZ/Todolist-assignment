@@ -9,7 +9,7 @@ import fetchUtil, { METHOD } from "./utils/Fetch";
 function App() {
   //TODO: move to config file
   const apiUrl = "http://localhost:3013/api";
-
+  const [updateCounter, setUpdateCounter] = useState(0);
   const [todoList, setTodoList] = useState([
     {
       title: "template task",
@@ -54,19 +54,26 @@ function App() {
   ////END TaskForm region
 
   //remove task event handler
-  const removeTask = (index) => {
-    console.log("removeTask: " + index);
+  const removeTask = (objectId) => {
+    console.log("removeTask: " + objectId);
 
-    let newTodoList = [...todoList];
-
-    newTodoList.splice(index, 1);
-    setTodoList(newTodoList);
+    fetchUtil(apiUrl + "/tasks/" + objectId, METHOD.DELETE, null).then(
+      (response) => {
+        console.log(response);
+        setUpdateCounter((updateCounter + 1) % 100);
+      }
+    );
   };
   //change task status event handler
-  const doneTask = (index) => {
-    console.log("doneTask: " + index);
+  const doneTask = (objectId) => {
+    console.log("doneTask: " + objectId);
 
-    //TODO: change status by API
+    fetchUtil(apiUrl + "/tasks/" + objectId, METHOD.PUT, {
+      status: "DONE",
+    }).then((response) => {
+      console.log(response);
+      setUpdateCounter((updateCounter + 1) % 100);
+    });
   };
 
   //Try fetching
@@ -82,7 +89,7 @@ function App() {
       setTodoList(response);
       console.log(response);
     });
-  }, [apiUrl]);
+  }, [apiUrl, updateCounter]);
 
   return (
     <div className="App">

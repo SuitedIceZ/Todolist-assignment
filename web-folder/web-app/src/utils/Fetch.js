@@ -1,7 +1,7 @@
 function fetchFunction(path, method = METHOD.GET, body) {
   return fetch(path, {
     method: method,
-    body: body,
+    body: body && JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
     },

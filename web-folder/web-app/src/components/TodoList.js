@@ -15,8 +15,8 @@ export default function TodoList(props) {
             description={task.description}
             status={task.status}
             dueDate={"Due Date: " + dueDate}
-            onClickRemove={() => removeTask(index)}
-            onClickDone={() => doneTask(index)}
+            onClickRemove={() => removeTask(task._id)}
+            onClickDone={() => doneTask(task._id)}
           />
         );
       })}
