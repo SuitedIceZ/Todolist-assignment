@@ -62,6 +62,12 @@ function App() {
     newTodoList.splice(index, 1);
     setTodoList(newTodoList);
   };
+  //change task status event handler
+  const doneTask = (index) => {
+    console.log("doneTask: " + index);
+
+    //TODO: change status by API
+  };
 
   //Try fetching
   useEffect(() => {
@@ -98,11 +104,20 @@ function App() {
       </div>
 
       <div>
-        <TodoList todoList={todoList} removeTask={removeTask} />
+        <h1>Todo Task</h1>
+        <TodoList
+          todoList={todoList.filter((task) => task.status === "TODO")}
+          removeTask={removeTask}
+          doneTask={doneTask}
+        />
       </div>
 
       <div>
-        <h1>In-Progress Task</h1>
+        <h1>Done Task</h1>
+        <TodoList
+          todoList={todoList.filter((task) => task.status === "DONE")}
+          removeTask={removeTask}
+        />
       </div>
     </div>
   );
