@@ -5,7 +5,7 @@
   justify-content: center;
 }
 
-.AddTaskContainer {
+.AddTaskContainer-dark {
   background-color: #a0a0a0;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -19,6 +19,24 @@
   font-family: "Open Sans", sans-serif;
 }
 
-label {
+.AddTaskContainer-light {
+  background-color: #d6eaf8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 2px 3px #ccc;
+  width: 300px;
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+#label-dark {
   color: #000;
+}
+
+#label-light {
+  color: #333333;
 }

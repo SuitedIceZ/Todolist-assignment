@@ -1,5 +1,4 @@
-/*
-.TaskCardContrainer {
+.TaskCardContrainer-dark {
   background-color: #a0a0a0;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -7,14 +6,13 @@
   margin: 10px;
   box-shadow: 0 2px 3px #ccc;
   width: 300px;
-  display: inline-block;
-  vertical-align: top;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
+  border-bottom: 1px solid #ccc; /* added bottom border */
 }
-*/
-.TaskCardContrainer {
-  background-color: #a0a0a0;
+
+.TaskCardContrainer-light {
+  background-color: #d6eaf8;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;

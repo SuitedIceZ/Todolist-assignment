@@ -1,4 +1,4 @@
-.App {
+.App-dark {
   background-color: #97999f;
   display: flex;
   flex-direction: column;
@@ -6,7 +6,15 @@
   min-height: 100vh;
 }
 
-.NavigateBar {
+.App-light {
+  background-color: #85c1e9;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.NavigateBar-dark {
   background-color: #282c34;
   min-height: 15vh;
   display: flex;
@@ -18,8 +26,31 @@
   padding: 0 100px;
 }
 
-.AddTaskBar {
+.NavigateBar-light {
+  background-color: #2e86c1;
+  min-height: 15vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 0 100px;
+}
+
+.AddTaskBar-dark {
   background-color: #5c5e64;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.AddTaskBar-light {
+  background-color: #3498db;
   min-height: 10vh;
   display: flex;
   flex-direction: row;

@@ -5,10 +5,12 @@ import "../style/TaskForm.css";
 import fetchUtil, { METHOD } from "../utils/Fetch";
 
 import apiUrlContext from "../context/apiUrl";
+import themeContext from "../context/theme";
 
 export default function TaskForm(props) {
-  const { updateTodoListFlag, setUpdateTodoListFlag } = props;
+  const { updateTodoListFlag, setUpdateTodoListFlag, setTheme } = props;
   const apiUrl = useContext(apiUrlContext);
+  const theme = useContext(themeContext);
 
   ////default value
   //get current date
@@ -42,6 +44,7 @@ export default function TaskForm(props) {
     fetchUtil(apiUrl + "/tasks", METHOD.POST, newTask).then((response) => {
       console.log(response);
       setUpdateTodoListFlag((updateTodoListFlag + 1) % 100);
+      //TODO: fix add task, the app will re render all so the theme will be reset
     });
 
     //clear text
@@ -51,9 +54,15 @@ export default function TaskForm(props) {
   };
 
   return (
-    <div className="AddTaskContainer">
+    <div
+      className={
+        theme === "dark" ? "AddTaskContainer-dark" : "AddTaskContainer-light"
+      }
+    >
       <form className="AddTaskForm">
-        <label htmlFor="title">Task title:</label>
+        <label htmlFor="title" style={{ color: "black" }}>
+          Task title:
+        </label>
         <input
           type="text"
           id="title"
@@ -62,7 +71,9 @@ export default function TaskForm(props) {
           value={inputTaskTitle}
           onChange={onChangeInputTaskTitle}
         />
-        <label htmlFor="description">Task description:</label>
+        <label htmlFor="description" style={{ color: "black" }}>
+          Task description:
+        </label>
         <input
           type="text"
           id="description"
@@ -71,7 +82,9 @@ export default function TaskForm(props) {
           value={inputTaskDescription}
           onChange={onChangeInputTaskDescription}
         />
-        <label htmlFor="dueDate">Task due date:</label>
+        <label htmlFor="dueDate" style={{ color: "black" }}>
+          Task due date:
+        </label>
         <input
           type="date"
           id="dueDate"
