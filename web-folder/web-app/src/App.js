@@ -6,10 +6,13 @@ import TaskForm from "./components/TaskForm";
 
 import fetchUtil, { METHOD } from "./utils/Fetch";
 
+import apiUrlContext from "./context/apiUrl";
+
 function App() {
-  //TODO: move to config file
+  //TODO: move string hard code to config file
   const apiUrl = "http://localhost:3013/api";
-  const [updateCounter, setUpdateCounter] = useState(0);
+
+  const [updateTodoListFlag, setUpdateTodoListFlag] = useState(0);
   const [todoList, setTodoList] = useState([
     {
       title: "template task",
@@ -19,40 +22,6 @@ function App() {
     },
   ]);
 
-  ////START TaskForm region
-  //TaskFrom state
-  const [inputTaskTitle, setTaskTitle] = useState("a task");
-  const [inputTaskDescription, setTaskDescription] = useState("a description");
-  const [inputTaskDueDate, setTaskDueDate] = useState("a due date");
-  const [TaskStatus, setTaskStatus] = useState("TODO");
-  //TaskFrom event handler
-  const onChangeInputTaskTitle = ({ target: { value } }) => {
-    setTaskTitle(value);
-  };
-  const onChangeInputTaskDescription = ({ target: { value } }) => {
-    setTaskDescription(value);
-  };
-  const onChangeInputDueDate = ({ target: { value } }) => {
-    setTaskDueDate(value);
-  };
-
-  const addTask = () => {
-    const newTask = {
-      title: inputTaskTitle,
-      description: inputTaskDescription,
-      dueDate: inputTaskDueDate,
-      status: TaskStatus,
-    };
-    setTodoList([...todoList, newTask]);
-
-    //clear text
-    setTaskTitle("");
-    setTaskDescription("");
-    setTaskDueDate("");
-    setTaskStatus("TODO");
-  };
-  ////END TaskForm region
-
   //remove task event handler
   const removeTask = (objectId) => {
     console.log("removeTask: " + objectId);
@@ -60,7 +29,7 @@ function App() {
     fetchUtil(apiUrl + "/tasks/" + objectId, METHOD.DELETE, null).then(
       (response) => {
         console.log(response);
-        setUpdateCounter((updateCounter + 1) % 100);
+        setUpdateTodoListFlag((updateTodoListFlag + 1) % 100);
       }
     );
   };
@@ -72,7 +41,7 @@ function App() {
       status: "DONE",
     }).then((response) => {
       console.log(response);
-      setUpdateCounter((updateCounter + 1) % 100);
+      setUpdateTodoListFlag((updateTodoListFlag + 1) % 100);
     });
   };
 
@@ -89,44 +58,40 @@ function App() {
       setTodoList(response);
       console.log(response);
     });
-  }, [apiUrl, updateCounter]);
+  }, [apiUrl, updateTodoListFlag]);
 
   return (
-    <div className="App">
-      <div className="NavigateBar">
-        <div>username</div>
-        <h1>Todo list</h1>
-        <button id="themeToggleButton">Toggle light/dark theme</button>
-      </div>
-      <div className="AddTaskBar">
-        <TaskForm
-          inputTaskTitle={inputTaskTitle}
-          inputTaskDescription={inputTaskDescription}
-          inputTaskDueDate={inputTaskDueDate}
-          onChangeInputTaskTitle={onChangeInputTaskTitle}
-          onChangeInputTaskDescription={onChangeInputTaskDescription}
-          onChangeInputDueDate={onChangeInputDueDate}
-          addTask={addTask}
-        />
-      </div>
+    <apiUrlContext.Provider value={apiUrl}>
+      <div className="App">
+        <div className="NavigateBar">
+          <h1>Todo list Website</h1>
+          <button id="themeToggleButton">Toggle light/dark theme</button>
+        </div>
+        <div className="AddTaskBar">
+          <TaskForm
+            updateTodoListFlag={updateTodoListFlag}
+            setUpdateTodoListFlag={setUpdateTodoListFlag}
+          />
+        </div>
 
-      <div>
-        <h1>Todo Task</h1>
-        <TodoList
-          todoList={todoList.filter((task) => task.status === "TODO")}
-          removeTask={removeTask}
-          doneTask={doneTask}
-        />
-      </div>
+        <div>
+          <h1>Todo List</h1>
+          <TodoList
+            todoList={todoList.filter((task) => task.status === "TODO")}
+            removeTask={removeTask}
+            doneTask={doneTask}
+          />
+        </div>
 
-      <div>
-        <h1>Done Task</h1>
-        <TodoList
-          todoList={todoList.filter((task) => task.status === "DONE")}
-          removeTask={removeTask}
-        />
+        <div>
+          <h1>Done List</h1>
+          <TodoList
+            todoList={todoList.filter((task) => task.status === "DONE")}
+            removeTask={removeTask}
+          />
+        </div>
       </div>
-    </div>
+    </apiUrlContext.Provider>
   );
 }
 

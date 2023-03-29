@@ -1,4 +1,12 @@
 function fetchFunction(path, method = METHOD.GET, body) {
+  console.log(
+    "fetching at ",
+    path,
+    " with method ",
+    method,
+    " and body ",
+    body && JSON.stringify(body)
+  );
   return fetch(path, {
     method: method,
     body: body && JSON.stringify(body),
