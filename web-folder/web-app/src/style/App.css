@@ -59,3 +59,28 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+#themeToggleButton {
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 6px 6px 6px 8px;
+
+  width: 242px;
+  height: 36px;
+
+  /* primary/200 */
+
+  background: #b8dbd9;
+  border-radius: 4px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+
+  color: black;
+}

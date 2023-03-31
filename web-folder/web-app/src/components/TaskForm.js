@@ -8,7 +8,7 @@ import apiUrlContext from "../context/apiUrl";
 import themeContext from "../context/theme";
 
 export default function TaskForm(props) {
-  const { updateTodoListFlag, setUpdateTodoListFlag, setTheme } = props;
+  const { updateTodoListFlag, setUpdateTodoListFlag /*, setTheme */ } = props;
   const apiUrl = useContext(apiUrlContext);
   const theme = useContext(themeContext);
 

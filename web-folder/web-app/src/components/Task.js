@@ -23,7 +23,7 @@ export default function Task(props) {
         <p>{status}</p>
         <p>{dueDate}</p>
       </div>
-      <div>
+      <div id="doneAndRemove">
         {status === "TODO" && (
           <button className="DoneButton" onClick={onClickDone}>
             Done!

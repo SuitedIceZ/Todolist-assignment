@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+
 import "./style/App.css";
 import "./style/Button.css";
 import TodoList from "./components/TodoList";
@@ -74,15 +76,16 @@ function App() {
               theme === "dark" ? "NavigateBar-dark" : "NavigateBar-light"
             }
           >
-            <h1>Todo list Website</h1>
-            <button
+            <h1>Todo list</h1>
+            <Button
+              variant="contained"
               id="themeToggleButton"
               onClick={() => {
                 setTheme(theme === "light" ? "dark" : "light");
               }}
             >
               Toggle light/dark theme
-            </button>
+            </Button>
           </div>
           <div
             className={
