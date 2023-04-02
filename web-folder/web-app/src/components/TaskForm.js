@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import "../style/Button.css";
 import "../style/TaskForm.css";
+import themeColor from "../config/themeColor";
 
 import fetchUtil, { METHOD } from "../utils/Fetch";
 
@@ -55,9 +56,8 @@ export default function TaskForm(props) {
 
   return (
     <div
-      className={
-        theme === "dark" ? "AddTaskContainer-dark" : "AddTaskContainer-light"
-      }
+      className={"AddTaskContainer"}
+      style={{ "background-color": themeColor[theme + "Theme"].primary[100] }}
     >
       <form className="AddTaskForm">
         <label htmlFor="title" style={{ color: "black" }}>

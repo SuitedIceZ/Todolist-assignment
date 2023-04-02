@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import themeContext from "../context/theme";
 import "../style/Button.css";
 import "../style/Task.css";
+import themeColor from "../config/themeColor";
 
 export default function Task(props) {
   const { title, description, status, dueDate, onClickRemove, onClickDone } =
@@ -9,11 +10,8 @@ export default function Task(props) {
   const theme = useContext(themeContext);
   return (
     <div
-      className={
-        theme === "dark"
-          ? "TaskCardContrainer-dark"
-          : "TaskCardContrainer-light"
-      }
+      className={"TaskCardContrainer"}
+      style={{ backgroundColor: themeColor[theme + "Theme"].primary[100] }}
     >
       <h4>
         <b>{title}</b>

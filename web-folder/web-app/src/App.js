@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 
 import "./style/App.css";
 import "./style/Button.css";
+import themeColor from "./config/themeColor";
 import TodoList from "./components/TodoList";
 import TaskForm from "./components/TaskForm";
 
@@ -67,19 +68,30 @@ function App() {
   useEffect(() => {
     console.log("useEffect theme: " + theme);
   }, [theme]);
+
   return (
     <themeContext.Provider value={theme}>
       <apiUrlContext.Provider value={apiUrl}>
-        <div className={theme === "dark" ? "App-dark" : "App-light"}>
+        <div
+          className={"App"}
+          style={{
+            "background-color": themeColor[theme + "Theme"].primary[200],
+          }}
+        >
           <div
-            className={
-              theme === "dark" ? "NavigateBar-dark" : "NavigateBar-light"
-            }
+            className={"NavigateBar"}
+            style={{
+              background: themeColor[theme + "Theme"].primary[100],
+            }}
           >
             <h1>Todo list</h1>
             <Button
               variant="contained"
               id="themeToggleButton"
+              style={{
+                "background-color": themeColor[theme + "Theme"].primary[200],
+                color: themeColor[theme + "Theme"].primary[400],
+              }}
               onClick={() => {
                 setTheme(theme === "light" ? "dark" : "light");
               }}
@@ -88,9 +100,10 @@ function App() {
             </Button>
           </div>
           <div
-            className={
-              theme === "dark" ? "AddTaskBar-dark" : "AddTaskBar-light"
-            }
+            className={"AddTaskBar"}
+            style={{
+              "background-color": themeColor[theme + "Theme"].primary[200],
+            }}
           >
             <TaskForm
               updateTodoListFlag={updateTodoListFlag}

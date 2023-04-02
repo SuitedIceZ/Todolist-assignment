@@ -5,8 +5,8 @@
   justify-content: center;
 }
 
-.AddTaskContainer-dark {
-  background-color: #a0a0a0;
+.AddTaskContainer {
+  background-color: #586f7c;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
@@ -19,24 +19,6 @@
   font-family: "Open Sans", sans-serif;
 }
 
-.AddTaskContainer-light {
-  background-color: #d6eaf8;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  box-shadow: 0 2px 3px #ccc;
-  width: 300px;
-  display: inline-block;
-  vertical-align: top;
-  box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
-}
-
-#label-dark {
+#label {
   color: #000;
-}
-
-#label-light {
-  color: #333333;
 }
