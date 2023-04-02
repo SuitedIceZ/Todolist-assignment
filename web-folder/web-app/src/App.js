@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
+import { Button } from "@mui/material";
 
 import "./style/App.css";
 import "./style/Button.css";
@@ -113,7 +113,7 @@ function App() {
                 color: themeColor[theme + "Theme"].primary[400],
               }}
             >
-              <h1>Create new task</h1>
+              <h3>Create new task</h3>
               <TaskForm
                 updateTodoListFlag={updateTodoListFlag}
                 setUpdateTodoListFlag={setUpdateTodoListFlag}

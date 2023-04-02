@@ -1,4 +1,13 @@
 import React, { useContext } from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  CardActionArea,
+  CardActions,
+} from "@mui/material";
+
 import themeContext from "../context/theme";
 import "../style/Button.css";
 import "../style/Task.css";
@@ -9,28 +18,47 @@ export default function Task(props) {
     props;
   const theme = useContext(themeContext);
   return (
-    <div
-      className={"TaskCardContrainer"}
+    <Card
+      className="TaskCardContrainer"
       style={{ backgroundColor: themeColor[theme + "Theme"].primary[100] }}
     >
-      <h4>
-        <b>{title}</b>
-      </h4>
-      <p>{description}</p>
-      <div id="statusAndDueDate">
-        <p>{status}</p>
-        <p>{dueDate}</p>
-      </div>
-      <div id="doneAndRemove">
-        {status === "TODO" && (
-          <button className="DoneButton" onClick={onClickDone}>
-            Done!
-          </button>
-        )}
-        <button className="RemoveButton" onClick={onClickRemove}>
-          Remove
-        </button>
-      </div>
-    </div>
+      <CardContent sx={{ display: "flex", flexDirection: "row" }}>
+        <CardActionArea>
+          <Typography variant="h6" component="h4" sx={{ fontWeight: "bold" }}>
+            {title}
+          </Typography>
+          <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+            {dueDate}
+          </Typography>
+          <Typography variant="body1" sx={{ marginBottom: 2 }}>
+            {description}
+          </Typography>
+
+          <CardActions>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginTop: 2,
+              }}
+            >
+              {status === "TODO" && (
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={onClickDone}
+                  sx={{ marginRight: 1 }}
+                >
+                  DONE!
+                </Button>
+              )}
+              <Button variant="contained" color="error" onClick={onClickRemove}>
+                DELETE
+              </Button>
+            </div>
+          </CardActions>
+        </CardActionArea>
+      </CardContent>
+    </Card>
   );
 }
