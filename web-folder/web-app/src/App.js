@@ -84,7 +84,13 @@ function App() {
               background: themeColor[theme + "Theme"].primary[100],
             }}
           >
-            <h1>Todo list</h1>
+            <h1
+              style={{
+                color: themeColor[theme + "Theme"].primary[400],
+              }}
+            >
+              Todo list
+            </h1>
             <Button
               variant="contained"
               id="themeToggleButton"
@@ -99,34 +105,51 @@ function App() {
               Toggle light/dark theme
             </Button>
           </div>
-          <div
-            className={"AddTaskBar"}
-            style={{
-              "background-color": themeColor[theme + "Theme"].primary[200],
-            }}
-          >
-            <TaskForm
-              updateTodoListFlag={updateTodoListFlag}
-              setUpdateTodoListFlag={setUpdateTodoListFlag}
-              setTheme={setTheme}
-            />
-          </div>
+          <div className={"mainPage"}>
+            <div
+              className={"AddTaskBar"}
+              style={{
+                "background-color": themeColor[theme + "Theme"].primary[200],
+                color: themeColor[theme + "Theme"].primary[400],
+              }}
+            >
+              <h1>Create new task</h1>
+              <TaskForm
+                updateTodoListFlag={updateTodoListFlag}
+                setUpdateTodoListFlag={setUpdateTodoListFlag}
+                setTheme={setTheme}
+              />
+            </div>
+            <div className="allTaskBar">
+              <div>
+                <h2
+                  style={{
+                    color: themeColor[theme + "Theme"].primary[400],
+                  }}
+                >
+                  Todo List
+                </h2>
+                <TodoList
+                  todoList={todoList.filter((task) => task.status === "TODO")}
+                  removeTask={removeTask}
+                  doneTask={doneTask}
+                />
+              </div>
 
-          <div>
-            <h1>Todo List</h1>
-            <TodoList
-              todoList={todoList.filter((task) => task.status === "TODO")}
-              removeTask={removeTask}
-              doneTask={doneTask}
-            />
-          </div>
-
-          <div>
-            <h1>Done List</h1>
-            <TodoList
-              todoList={todoList.filter((task) => task.status === "DONE")}
-              removeTask={removeTask}
-            />
+              <div>
+                <h2
+                  style={{
+                    color: themeColor[theme + "Theme"].primary[400],
+                  }}
+                >
+                  Done List
+                </h2>
+                <TodoList
+                  todoList={todoList.filter((task) => task.status === "DONE")}
+                  removeTask={removeTask}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </apiUrlContext.Provider>

@@ -1,4 +1,6 @@
 import React, { useContext, useState } from "react";
+import Button from "@mui/material/Button";
+
 import "../style/Button.css";
 import "../style/TaskForm.css";
 import themeColor from "../config/themeColor";
@@ -92,9 +94,17 @@ export default function TaskForm(props) {
           value={inputTaskDueDate}
           onChange={onChangeInputDueDate}
         />
-        <button className="AddButton" type="submit" onClick={addTask}>
-          Add
-        </button>
+        <Button
+          variant="contained"
+          className="AddButton"
+          style={{
+            "background-color": themeColor[theme + "Theme"].primary[200],
+            color: themeColor[theme + "Theme"].primary[400],
+          }}
+          onClick={addTask}
+        >
+          Create
+        </Button>
       </form>
     </div>
   );
