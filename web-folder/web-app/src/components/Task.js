@@ -22,7 +22,7 @@ export default function Task(props) {
       className="TaskCardContrainer"
       style={{ backgroundColor: themeColor[theme + "Theme"].primary[100] }}
     >
-      <CardContent sx={{ display: "flex", flexDirection: "row" }}>
+      <CardContent>
         <CardActionArea>
           <Typography variant="h6" component="h4" sx={{ fontWeight: "bold" }}>
             {title}

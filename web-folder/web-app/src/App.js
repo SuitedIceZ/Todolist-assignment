@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import "./style/App.css";
 import "./style/Button.css";
@@ -20,7 +22,7 @@ function App() {
   const [todoList, setTodoList] = useState([
     {
       title: "template task",
-      description: "template description",
+      description: "if you see this, something wrong",
       dueDate: "template due date",
       status: "TODO",
     },
@@ -70,90 +72,92 @@ function App() {
   }, [theme]);
 
   return (
-    <themeContext.Provider value={theme}>
-      <apiUrlContext.Provider value={apiUrl}>
-        <div
-          className={"App"}
-          style={{
-            "background-color": themeColor[theme + "Theme"].primary[200],
-          }}
-        >
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <themeContext.Provider value={theme}>
+        <apiUrlContext.Provider value={apiUrl}>
           <div
-            className={"NavigateBar"}
+            className={"App"}
             style={{
-              background: themeColor[theme + "Theme"].primary[100],
+              "background-color": themeColor[theme + "Theme"].primary[200],
             }}
           >
-            <h1
-              style={{
-                color: themeColor[theme + "Theme"].primary[400],
-              }}
-            >
-              Todo list
-            </h1>
-            <Button
-              variant="contained"
-              id="themeToggleButton"
-              style={{
-                "background-color": themeColor[theme + "Theme"].primary[200],
-                color: themeColor[theme + "Theme"].primary[400],
-              }}
-              onClick={() => {
-                setTheme(theme === "light" ? "dark" : "light");
-              }}
-            >
-              Toggle light/dark theme
-            </Button>
-          </div>
-          <div className={"mainPage"}>
             <div
-              className={"AddTaskBar"}
+              className={"NavigateBar"}
               style={{
-                "background-color": themeColor[theme + "Theme"].primary[200],
-                color: themeColor[theme + "Theme"].primary[400],
+                background: themeColor[theme + "Theme"].primary[100],
               }}
             >
-              <h3>Create new task</h3>
-              <TaskForm
-                updateTodoListFlag={updateTodoListFlag}
-                setUpdateTodoListFlag={setUpdateTodoListFlag}
-                setTheme={setTheme}
-              />
+              <h1
+                style={{
+                  color: themeColor[theme + "Theme"].primary[400],
+                }}
+              >
+                Todo list
+              </h1>
+              <Button
+                variant="contained"
+                id="themeToggleButton"
+                style={{
+                  "background-color": themeColor[theme + "Theme"].primary[200],
+                  color: themeColor[theme + "Theme"].primary[400],
+                }}
+                onClick={() => {
+                  setTheme(theme === "light" ? "dark" : "light");
+                }}
+              >
+                Toggle light/dark theme
+              </Button>
             </div>
-            <div className="allTaskBar">
-              <div>
-                <h2
-                  style={{
-                    color: themeColor[theme + "Theme"].primary[400],
-                  }}
-                >
-                  Todo List
-                </h2>
-                <TodoList
-                  todoList={todoList.filter((task) => task.status === "TODO")}
-                  removeTask={removeTask}
-                  doneTask={doneTask}
+            <div className={"mainPage"}>
+              <div
+                className={"AddTaskBar"}
+                style={{
+                  "background-color": themeColor[theme + "Theme"].primary[200],
+                  color: themeColor[theme + "Theme"].primary[400],
+                }}
+              >
+                <h3>Create new task</h3>
+                <TaskForm
+                  updateTodoListFlag={updateTodoListFlag}
+                  setUpdateTodoListFlag={setUpdateTodoListFlag}
+                  setTheme={setTheme}
                 />
               </div>
+              <div className="allTaskBar">
+                <div>
+                  <h2
+                    style={{
+                      color: themeColor[theme + "Theme"].primary[400],
+                    }}
+                  >
+                    Todo List
+                  </h2>
+                  <TodoList
+                    todoList={todoList.filter((task) => task.status === "TODO")}
+                    removeTask={removeTask}
+                    doneTask={doneTask}
+                  />
+                </div>
 
-              <div>
-                <h2
-                  style={{
-                    color: themeColor[theme + "Theme"].primary[400],
-                  }}
-                >
-                  Done List
-                </h2>
-                <TodoList
-                  todoList={todoList.filter((task) => task.status === "DONE")}
-                  removeTask={removeTask}
-                />
+                <div>
+                  <h2
+                    style={{
+                      color: themeColor[theme + "Theme"].primary[400],
+                    }}
+                  >
+                    Done List
+                  </h2>
+                  <TodoList
+                    todoList={todoList.filter((task) => task.status === "DONE")}
+                    removeTask={removeTask}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </apiUrlContext.Provider>
-    </themeContext.Provider>
+        </apiUrlContext.Provider>
+      </themeContext.Provider>
+    </LocalizationProvider>
   );
 }
 

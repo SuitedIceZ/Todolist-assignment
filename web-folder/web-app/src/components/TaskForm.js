@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
-import Button from "@mui/material/Button";
+import { Button, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 
 import "../style/Button.css";
 import "../style/TaskForm.css";
@@ -9,6 +10,7 @@ import fetchUtil, { METHOD } from "../utils/Fetch";
 
 import apiUrlContext from "../context/apiUrl";
 import themeContext from "../context/theme";
+import dayjs from "dayjs";
 
 export default function TaskForm(props) {
   const { updateTodoListFlag, setUpdateTodoListFlag /*, setTheme */ } = props;
@@ -17,14 +19,15 @@ export default function TaskForm(props) {
 
   ////default value
   //get current date
-  const defaultDueDate = new Date();
+  const defaultDueDate = dayjs();
   const defaultTaskTitle = "Task title";
   const defaultTaskDescription = "Task description";
 
   ////TaskFrom state
   const [inputTaskTitle, setTaskTitle] = useState("");
   const [inputTaskDescription, setTaskDescription] = useState("");
-  const [inputTaskDueDate, setTaskDueDate] = useState();
+  const [inputTaskDueDate, setTaskDueDate] = useState(null);
+
   ////TaskFrom event handler
   const onChangeInputTaskTitle = ({ target: { value } }) => {
     setTaskTitle(value);
@@ -32,8 +35,9 @@ export default function TaskForm(props) {
   const onChangeInputTaskDescription = ({ target: { value } }) => {
     setTaskDescription(value);
   };
-  const onChangeInputDueDate = ({ target: { value } }) => {
-    setTaskDueDate(value);
+  const onChangeInputDueDate = (event) => {
+    console.log("setTaskDueDate : ", event);
+    setTaskDueDate(event);
   };
 
   const addTask = () => {
@@ -61,38 +65,28 @@ export default function TaskForm(props) {
       className={"AddTaskContainer"}
       style={{ "background-color": themeColor[theme + "Theme"].primary[100] }}
     >
-      <form className="AddTaskForm">
-        <label htmlFor="title" style={{ color: "black" }}>
-          Task title:
-        </label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder={defaultTaskTitle}
+      <form /*className="AddTaskForm"*/>
+        <TextField
+          className="InputField"
+          label="title"
+          variant="outlined"
           value={inputTaskTitle}
           onChange={onChangeInputTaskTitle}
         />
-        <label htmlFor="description" style={{ color: "black" }}>
-          Task description:
-        </label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          placeholder={defaultTaskDescription}
+        <TextField
+          className="InputField"
+          label="description"
+          variant="outlined"
           value={inputTaskDescription}
           onChange={onChangeInputTaskDescription}
         />
-        <label htmlFor="dueDate" style={{ color: "black" }}>
-          Task due date:
-        </label>
-        <input
-          type="date"
-          id="dueDate"
-          name="dueDate"
+        <DatePicker
+          className="InputField"
+          label="due date"
+          variant="outlined"
           value={inputTaskDueDate}
           onChange={onChangeInputDueDate}
+          format="DD/MM/YYYY" // specify the date format
         />
         <Button
           variant="contained"
