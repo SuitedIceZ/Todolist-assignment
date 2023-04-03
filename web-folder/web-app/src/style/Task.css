@@ -1,0 +1,23 @@
+.TaskCardContrainer {
+  background-color: #a0a0a0;
+  margin: 10px;
+
+  width: 1000px;
+  height: 176px;
+
+  box-shadow: 0 2px 3px #ccc;
+  box-sizing: border-box;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+#statusAndDueDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}

@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  my-db:
+    image: mongo:4.2.3
+    ports:
+      - 3014:27017
+    environment:
+      MONGO_INITDB_DATABASE: mydb
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    restart: always
