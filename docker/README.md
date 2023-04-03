@@ -27,6 +27,13 @@ docker-compose up --build -d
 # how to create user (TODO: might migrate this to script)
 
 connect to database using comprass and link
+
+connection string
+
+```
+mongodb://root:password@localhost:3014/
+```
+
 use database
 
 ```
