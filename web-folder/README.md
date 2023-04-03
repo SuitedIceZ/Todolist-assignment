@@ -7,5 +7,10 @@ cd web-app
 ```
 
 ```
+npm install
+```
+
+
+```
 yarn start
 ```

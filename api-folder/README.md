@@ -7,5 +7,9 @@ cd api-app
 ```
 
 ```
+npm install
+```
+
+```
 npm run dev
 ```

@@ -7,7 +7,12 @@ export default function TodoList(props) {
   return (
     <div className="TodoListContianer">
       {todoList.map((task, index) => {
-        const dueDate = new Date(task.dueDate).toLocaleDateString();
+        const options = { day: "numeric", month: "numeric", year: "numeric" };
+        const dueDate = new Date(task.dueDate).toLocaleDateString(
+          "en-GB",
+          options
+        );
+
         return (
           <Task
             key={index}
