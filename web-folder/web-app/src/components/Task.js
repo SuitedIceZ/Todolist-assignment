@@ -24,13 +24,32 @@ export default function Task(props) {
     >
       <CardContent>
         <CardActionArea>
-          <Typography variant="h6" component="h4" sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant="h6"
+            component="h4"
+            sx={{ fontWeight: "bold" }}
+            style={{
+              color: themeColor[theme + "Theme"].primary[400],
+            }}
+          >
             {title}
           </Typography>
-          <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+          <Typography
+            variant="body2"
+            sx={{ fontStyle: "italic" }}
+            style={{
+              color: themeColor[theme + "Theme"].primary[400],
+            }}
+          >
             {dueDate}
           </Typography>
-          <Typography variant="body1" sx={{ marginBottom: 2 }}>
+          <Typography
+            variant="body1"
+            sx={{ marginBottom: 2 }}
+            style={{
+              color: themeColor[theme + "Theme"].primary[400],
+            }}
+          >
             {description}
           </Typography>
 
