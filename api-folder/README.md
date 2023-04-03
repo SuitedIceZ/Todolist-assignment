@@ -6,6 +6,8 @@
 cd api-app
 ```
 
+copy the .env.development in folder config to new .env
+
 ```
 npm install
 ```
